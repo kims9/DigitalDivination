@@ -1,0 +1,115 @@
+<html>
+ <head>
+  <title>Magic Conch</title>
+  
+  <script type="text/javascript">
+    // we define answers
+    var answers = ["Maybe someday.", 
+                   "Nothing.", 
+                   "Nothing.", 
+                   "Yes",
+                   "Neither.", 
+                   "I don't think so.", 
+                   "No.", 
+                   "No.", 
+                   "No.",
+                   "No.", 
+                   "Try asking again.",
+                   "*Mockingly* No."];
+    
+    window.onload = function() {
+       var answer = document.getElementById("answer");
+       var conch = document.getElementById("conch-shell");
+       var question = document.getElementById("question");
+       
+       conch.addEventListener("click", function() {
+         if (question.value.length < 1) {
+           alert('Enter a question!');
+         } else {
+          var num; 
+          if(question.classList.contains("can") == true){
+             num = 4;
+           }else if(question.classList.contains("may") == true){
+             num = 3;     
+           }else{
+             num = Math.floor(Math.random() * Math.floor(answers.length));  
+           }
+          //  num = Math.floor(Math.random() * Math.floor(answers.length));  
+            answer.innerText = answers[num];
+          }
+       });
+    };
+  </script>
+
+  <style type="text/css">
+    @font-face {
+    font-family: spongefont;
+    src: url(spongefont.otf);
+  }
+    h1 { font-weight: 100; font-size: 2.5em;}
+
+    body{
+      background-image: url("kelp_forest.svg");
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+    
+    #content { 
+     width: 600px; 
+     height: 500px;
+     color: white;
+     margin: 50 auto; 
+     margin-top: 50px; 
+     border: 0px dotted black;
+     text-align: center; 
+     font-family: 'spongefont'; 
+     font-weight: 100;
+     background-image: url("conchpic.png");
+     background-repeat: no-repeat;
+     background-size: cover;
+     background-position: 0 100;
+   }
+    
+
+    
+    /*div.answer {
+      background-image: url("conchpic.png");
+    } */
+    
+    
+    p#answer {
+      padding: 23px;
+      color: lightblue;
+      letter-spacing: 2px;
+      font-size:18px;
+      text-shadow: 0px 0px 5px rgb(0, 0, 0);
+    }
+    
+    #question {
+      margin: 20px;
+      padding: 10px;
+      width: 400px;
+      font-size:22px;
+    }
+    
+    #info {
+      font-size: 22px;
+    }
+
+  </style>
+  
+ </head>
+ <body>
+  <div id="content">
+    <h1>All Hail the Magic Conch!</h1>
+    <p id="info">Ask a Question Beginning With "Oh, Magic Conch Shell"</p>
+    <input type="text" id="question" />
+    <div id="conch-shell" class="conch-shell">
+      <div class="answer">
+        <p id="answer"></p>
+      </div>
+    </div>
+  </div>
+ </body>
+</html>
