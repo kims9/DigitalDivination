@@ -3,6 +3,8 @@
   <title>Magic Conch</title>
   
   <script type="text/javascript">
+    var bubble = new Image(250,137)
+    bubble.src = "textBubble.png"
     // we define answers
     var answers = ["Maybe someday.", 
                    "Nothing.", 
@@ -21,20 +23,26 @@
        var answer = document.getElementById("answer");
        var conch = document.getElementById("conch-shell");
        var question = document.getElementById("question");
+
+       answer.innerText = "Pull String"
        
        conch.addEventListener("click", function() {
          if (question.value.length < 1) {
            alert('Enter a question!');
          } else {
           var num; 
-          if(question.classList.contains("can") == true){
-             num = 4;
-           }else if(question.classList.contains("may") == true){
+          if(question.classList.contains("can")){
+             num = 6;
+           }else if(question.classList.contains("may")){
              num = 3;     
            }else{
              num = Math.floor(Math.random() * Math.floor(answers.length));  
            }
-          //  num = Math.floor(Math.random() * Math.floor(answers.length));  
+          //  num = Math.floor(Math.random() * Math.floor(answers.length));
+          
+            document.head.appendChild(bubble)
+            bubble.style.marginLeft = '560px'
+            bubble.style.marginTop = '-750px'
             answer.innerText = answers[num];
           }
        });
@@ -49,41 +57,42 @@
     h1 { font-weight: 100; font-size: 2.5em;}
 
     body{
-      background-image: url("kelp_forest.svg");
+      background-image: url("kelp\ forest.svg");
       background-repeat: no-repeat;
       background-attachment: fixed;
       background-size: cover;
+      
     }
     
     #content { 
      width: 600px; 
-     height: 500px;
-     color: white;
+     height: 1000px;
+     color:lightblue;
      margin: 50 auto; 
-     margin-top: 50px; 
-     border: 0px dotted black;
+     margin-top: 80px; 
      text-align: center; 
      font-family: 'spongefont'; 
      font-weight: 100;
      background-image: url("conchpic.png");
      background-repeat: no-repeat;
-     background-size: cover;
-     background-position: 0 100;
+     background-size: contain;
+     background-position: 0 300;
    }
     
 
     
-    /*div.answer {
-      background-image: url("conchpic.png");
-    } */
+    div.answer {
+      width: 600;
+      height: 1500;
+    }
     
     
     p#answer {
-      padding: 23px;
-      color: lightblue;
+      padding: 30px;
+      color: #b800b8;
       letter-spacing: 2px;
-      font-size:18px;
-      text-shadow: 0px 0px 5px rgb(0, 0, 0);
+      font-size:25px;
+      text-shadow: 0px 0px 5px cyan;
     }
     
     #question {
