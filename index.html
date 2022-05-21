@@ -2,52 +2,7 @@
  <head>
   <title>Magic Conch</title>
   
-  <script type="text/javascript">
-    var bubble = new Image(250,137)
-    bubble.src = "textBubble.png"
-    // we define answers
-    var answers = ["Maybe someday.", 
-                   "Nothing.", 
-                   "Nothing.", 
-                   "Yes",
-                   "Neither.", 
-                   "I don't think so.", 
-                   "No.", 
-                   "No.", 
-                   "No.",
-                   "No.", 
-                   "Try asking again.",
-                   "*Mockingly* No."];
-    
-    window.onload = function() {
-       var answer = document.getElementById("answer");
-       var conch = document.getElementById("conch-shell");
-       var question = document.getElementById("question");
-
-       answer.innerText = "Pull String"
-       
-       conch.addEventListener("click", function() {
-         if (question.value.length < 1) {
-           alert('Enter a question!');
-         } else {
-          var num; 
-          if(question.classList.contains("can")){
-             num = 6;
-           }else if(question.classList.contains("may")){
-             num = 3;     
-           }else{
-             num = Math.floor(Math.random() * Math.floor(answers.length));  
-           }
-          //  num = Math.floor(Math.random() * Math.floor(answers.length));
-          
-            document.head.appendChild(bubble)
-            bubble.style.marginLeft = '560px'
-            bubble.style.marginTop = '-750px'
-            answer.innerText = answers[num];
-          }
-       });
-    };
-  </script>
+ 
 
   <style type="text/css">
     @font-face {
@@ -60,13 +15,58 @@
       background-image: url("kelp_forest.svg");
       background-repeat: no-repeat;
       background-attachment: fixed;
-      background-size: cover;
-      
+      background-size: cover; 
+      overflow-x: hidden;
     }
     
-    #content { 
-     width: 600px; 
-     height: 1000px;
+    .form
+    {
+      width:100%;
+      height: auto;
+      text-align: center;
+      color:lightblue;
+    }
+    .title
+    {
+      text-align: center;
+      font-family: 'spongefont'; 
+      font-weight: 100;
+      color:lightblue;
+      margin: 50 auto; 
+    }
+    .info
+    {
+      font-family: 'spongefont'; 
+      font-size: 22px;
+    }
+    #question
+    {
+      margin: 20px;
+      padding: 10px;
+      width: 400px;
+      font-size:22px;
+      border-radius: 25px;
+      border: 5px solid lightblue;
+    }
+    .ansDiv
+    {
+      text-align: center;
+    }
+    #answer
+    {
+      font-family: 'spongefont'; 
+      font-size: 17px;
+      color:lightblue;
+    }
+
+    .con{
+      text-align: center;
+      width:100%;
+      height:auto;
+    }
+     /* #content {  
+     width: 100%; 
+     height: auto;
      color:lightblue;
      margin: 50 auto; 
      margin-top: 80px; 
@@ -77,13 +77,11 @@
      background-repeat: no-repeat;
      background-size: contain;
      background-position: 0 300;
-   }
-    
-
+   } 
     
     div.answer {
-      width: 600;
-      height: 1500;
+      width: 300px;
+      height: 800px;
     }
     
     
@@ -104,21 +102,104 @@
     
     #info {
       font-size: 22px;
-    }
+    } */
 
   </style>
-  
+
+ <link rel="stylesheet" href="style.css">
  </head>
  <body>
+  <section>
   <div id="content">
-    <h1>All Hail the Magic Conch!</h1>
-    <p id="info">Ask a Question Beginning With "Oh, Magic Conch Shell"</p>
-    <input type="text" id="question" />
-    <div id="conch-shell" class="conch-shell">
-      <div class="answer">
-        <p id="answer"></p>
-      </div>
+
+    <h1 class="title">All Hail the Magic Conch!</h1>
+
+    <div class="form">
+      <p class="info">Ask a Question Beginning With "Oh, Magic Conch Shell"</p>
+      <input type="text" id="question" />
     </div>
+    
+    <div class="ansDiv">
+      <h4 id="answer"></h4>
+    </div>
+
+    <div class="con">
+      <img id="conch-shell" src="conchpic.png">
+    </div>
+    
+
   </div>
+  </section>
+
+  <script type="text/javascript">
+    function createBubble(){
+      const section = document.querySelector('section')
+      const createElement = document.createElement('span')
+      var size = Math.random() * 60;
+
+      createElement.style.width = 20 + size + 'px';
+      createElement.style.height = 20 + size + 'px';
+      createElement.style.left = Math.random() * innerWidth + 'px';
+      section.appendChild(createElement);
+
+      setTimeout(() => {
+        createElement.remove()
+      },4000)
+    }
+
+    setInterval(createBubble, 50)
+  </script>
+
+<script type="text/javascript">
+  var bubble = new Image(250,137)
+  bubble.src = "textBubble.png"
+  // we define answers
+  var answers = ["Maybe someday.", 
+                 "Nothing.", 
+                 "Nothing.", 
+                 "Yes",
+                 "Neither.", 
+                 "I don't think so.", 
+                 "No.", 
+                 "No.", 
+                 "No.",
+                 "No.", 
+                 "Try asking again.",
+                 "*Mockingly* No."];
+  
+  window.onload = function() {
+     var answer = document.getElementById("answer");
+     var conch = document.getElementById("conch-shell");
+     var question = document.getElementById("question");
+
+     answer.innerText = "Pull String"
+     
+     conch.addEventListener("click", function() {
+       if (question.value == "" || question.value == null) {
+         alert('Enter a question!');
+       } 
+       else {
+        var num; 
+
+        questionValue = question.value;
+
+        if(questionValue.includes("can")){
+           num = 6;
+           
+         }else if(questionValue.includes("may")){
+           num = 3;     
+         }else{
+           num = Math.floor(Math.random() * Math.floor(answers.length));  
+           
+         }
+        //  num = Math.floor(Math.random() * Math.floor(answers.length));
+          document.head.appendChild(bubble)
+          bubble.style.marginLeft = '560px'
+          bubble.style.marginTop = '-750px'
+          answer.innerText = answers[num];
+        }
+     });
+  };
+</script>
  </body>
 </html>
